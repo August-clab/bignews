@@ -50,4 +50,33 @@ $(function () {
     })
 
 
+    // 左侧按钮高亮显示
+    // 1.给左侧按钮每一个div注册事件 每个div都有一个共同的类level01
+    $('.menu .level01').on('click', function () {
+        // 2.单击当前的div添加类active 其余兄弟移出类
+        $(this).addClass('active').siblings().removeClass('active');
+
+        // 3.当单击文章管理的时候，要实现一个合并与展开的切换
+        if ($(this).index() == 1) {
+            // 实现切换
+            $('.menu .level02').slideToggle();
+            // 4.右侧小三角进行切换
+            $(this).find('b').toggleClass('rotate0');
+
+            $('.menu .level02 li:eq(0)').trigger('click')
+
+        }
+    })
+
+
+
+    // 让文章管理中心中的li标签被单击的时候高亮显示
+
+    $('.menu .level02 li').on('click', function () {
+        $(this).addClass('active').siblings().removeClass('active')
+    })
+
+
+
+
 })
