@@ -4,9 +4,9 @@ $(function () {
         type: 'get',
         url: BigNew.user_info,
 
-        headers: {
-            'Authorization': localStorage.getItem('token')
-        },
+        /*  headers: {
+             'Authorization': localStorage.getItem('token')
+         }, */
 
         success: function (res) {
             // 2.请求回来的数据后要渲染界面
@@ -63,6 +63,7 @@ $(function () {
             // 4.右侧小三角进行切换
             $(this).find('b').toggleClass('rotate0');
 
+            // 只要展开或是合并文章管理，就要让第一个li标签高亮显示
             $('.menu .level02 li:eq(0)').trigger('click')
 
         }
@@ -71,12 +72,10 @@ $(function () {
 
 
     // 让文章管理中心中的li标签被单击的时候高亮显示
-
+    // 给每一个li标签注册事件
     $('.menu .level02 li').on('click', function () {
+        // 当前被单击的li标签要添加类active  其余的要移出类active
         $(this).addClass('active').siblings().removeClass('active')
     })
-
-
-
 
 })
