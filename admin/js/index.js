@@ -10,7 +10,7 @@ $(function () {
 
         success: function (res) {
             // 2.请求回来的数据后要渲染界面
-            if (res.code == 100) {
+            if (res.code == 200) {
                 //显示登陆的用户名
                 $('.user_info span i').text(res.data.nickname)
                 // 显示登陆的头像

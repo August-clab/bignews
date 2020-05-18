@@ -57,10 +57,10 @@ $(function () {
                     $.ajax({
                         type: 'get',
                         url: BigNew.user_info,
-                        success: function () {
+                        success: function (res) {
                             if (res.code == 200) {
                                 // 显示登陆的用户名 
-                                parent.$('.user_info span i').text;
+                                parent.$('.user_info span i').text(res.data.nickname);
                                 // 显示登陆的头像
                                 parent.$('.user_info img').attr('src', res.data.userPic);
                                 // 个人中心的图片也设置一样
