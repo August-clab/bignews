@@ -14,7 +14,7 @@ $(function () {
     // 新增按钮注册事件弹出模态框
     $('#xinzengfenlei').on('click', function () {
         $('.addModal').modal('show');
-
+        // 修改提示标题
         $('.addModal h4').text('新增文章分类');
     })
 
@@ -24,7 +24,7 @@ $(function () {
     // 需要进行委托的方式注册事件
     $('tbody').on('click', '.btn-edit', function () {
         $('.addModal').modal('show');
-
+        // 修改提示标题
         $('.addModal h4').text('更新文章分类');
 
     })
