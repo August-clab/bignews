@@ -50,7 +50,7 @@ $(function () {
 
 
                     // 启动分页功能
-                    pagination(res.data.totalPages)
+                    pagination(res.data.totalPage)
                 }
             }
         })
@@ -82,9 +82,9 @@ $(function () {
             last: '最后一页',
             next: '下一页',
             prev: '上一页',
-            initiateStarPageClick: false,//不要默认点击
+            initiateStartPageClick: false,//不要默认点击
             onPageClick: function (event, page) {
-                $('#page-content').text('Page ' + page);
+                // $('#page-content').text('Page ' + page);
                 // page是当前页码
                 getDataByParams({
                     key: $('#key').val(),
