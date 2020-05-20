@@ -76,8 +76,8 @@ $(function () {
     // 实现分页功能
     function pagination(totalPages, visiblePages) {
         $('#pagination-demo').twbsPagination({
-            totalPages: 35,
-            visiblePages: 7,
+            totalPages: totalPages,// 总页数
+            visiblePages: visiblePages || 7,// 可见最大上限页码值
             first: '首页',
             last: '最后一页',
             next: '下一页',
