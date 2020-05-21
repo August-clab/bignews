@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="./css/iconfont.css">
     <link rel="stylesheet" href="./css/main.css">
     <script src="./libs/jquery-1.12.4.min.js"></script>
+    <!-- 引入bootstrap.js文件，这样页面中的动态效果才会有效 -->
+    <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
     <!-- 引入模板引擎js文件 -->
     <script src="./libs/template-web.js"></script>
     <!-- 引入分页插件 -->
@@ -38,7 +40,7 @@
                             <option value="草稿">草稿</option>
                             <option value="已发布">已发布</option>
                         </select>
-                        <input type="text" name="key" id="key">
+                        <input type="text" id="key" name="key">
                         <button id="btnSearch" class="btn btn-default btn-sm">筛选</button>
                     </form>
                 </div>
@@ -62,13 +64,33 @@
 
                 </tbody>
             </table>
-
             <!-- 分页布局 -->
             <div class="row text-center">
                 <ul id="pagination-demo" class="pagination-sm"></ul>
+                <p id="pagination">暂时没有数据</p>
             </div>
         </div>
-    </div><!-- 最外层大盒子container-fluid -->
+    </div>
+
+    <!-- 删除文章的模态框 -->
+    <div class="modal fade delModal" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">温馨提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p>您真的要删除此条数据么？？？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary btn-sure">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
     <!-- 文章分类的模板 -->
     <script type="text/template" id="categoryList">
@@ -80,24 +102,19 @@
 
     <!-- 文章列表的模板 -->
     <script type="text/template" id="articleList">
-        {{ each data value  index }}
-        <tr>
+        {{each data value index}}
+         <tr>
             <td class="text-center">{{index+1}}</td>
-            <td>{{value.title}}</td>
-            <td>{{value.author}}</td>
-            <td>{{value.category}}</td>
-            <td class="text-center">{{value.data}}</td>
-            {{if value.state == "已发布"}}
-                <td class="text-center">已发布</td>
-            {{else}}
-                <td class="text-center">草稿</td>
-            {{/if}}
-            <td class="text-center">
-                <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
-                <a href="javascript:void(0);" class="btn btn-danger btn-xs delete">删除</a>
-            </td>
-            
-        </tr>
+             <td>{{value.title}}</td>
+             <td>{{value.author}}</td>
+             <td>{{value.category}}</td>
+             <td class="text-center">{{value.date}}</td>
+             <td class="text-center">{{value.state}}</td>
+             <td class="text-center">
+                 <a href="article_edit.html?id={{value.id}}"  class="btn btn-default btn-xs">编辑</a>
+                 <button data-id="{{value.id}}" data-toggle="modal"  data-target="#myModal" class="btn btn-danger btn-xs delete"> 删除</button>
+             </td>
+         </tr>
         {{/each}}
     </script>
 </body>
